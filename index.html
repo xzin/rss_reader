@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+ <script src="js/angular.min.js"></script>
+<!--[if lt IE 9]><script language="javascript" type="text/javascript" src="http://explorercanvas.googlecode.com/svn/trunk/excanvas.js"></script><![endif]-->
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+<link type="text/css" rel="stylesheet" href="css/font-awesome.min.css">
+<link type="text/css" rel="stylesheet" href="css/style.css" />
+
+
+</head>
+<body ng-app="RSSFeedApp">
+<div class="container">
+<h4>Feed Reader</h4>
+    <div data-ng-controller="FeedCtrl">
+
+    <section id="one" class="col-md-6">
+        <div class="row-fluid">
+            
+            <form>
+                <div class="input-prepend span12">
+                <h5>List of channels</h5>
+                <ul id="main_channels">
+                  <li><a href="#" ng-click="feedSrc='http://rss.cnn.com/rss/cnn_topstories.rss';loadFeed($event);">CNN</a><button class="remove fa fa-times"></button></li>
+                  <li><a href="#" ng-click="feedSrc='http://news.ycombinator.com/rss';loadFeed($event)">Hacker News</a><button class="remove fa fa-times"></button></li>
+                  <li><a href="#" ng-click="feedSrc='http://feeds2.feedburner.com/Mashable';loadFeed($event)">Mashable</a><button class="remove fa fa-times"></button></li>                  
+                  <li><a href="#" ng-click="feedSrc='http://feeds.huffingtonpost.com/huffingtonpost/raw_feed';loadFeed($event)">Huffington Post</a><button class="remove fa fa-times"></button></li>
+                  <li><a href="#" ng-click="feedSrc='http://feeds.feedburner.com/TechCrunch';loadFeed($event)">TechCrunch</a><button class="remove fa fa-times"></button></li>
+                  <li><a href="#" ng-click="feedSrc='http://feeds.washingtonpost.com/rss/rss_election-2012';loadFeed($event)">Washington post</a><button class="remove fa fa-times"></button></li>
+                  <li><a href="#" ng-click="feedSrc='http://en.people.cn/rss/China.xml';loadFeed($event)">People cn</a><button class="remove fa fa-times"></button></li>
+                  <li><a href="#" ng-click="feedSrc='http://www.ukrinform.ua/eng/rss/news/lastnews';loadFeed($event)">Ukrinform</a><button class="remove fa fa-times"></button></li>
+
+
+                </ul>
+            </div>
+            </form>
+        </div>
+      </section>
+      <section id="two" class="col-md-6">
+      <h5>List of messages</h5>
+        <div class="row-fluid">
+            <ul class="unstyled">
+                <span class="badge badge-warning" ng-show="feeds.length > 0">{{(feeds | filter:filterText).length}} Items</span>
+                <li ng-repeat="feed in feeds | filter:filterText">                    
+                    <h5 class="message-title"><a href="#">{{feed.title}}</a></h5>                                        
+                    <p class="text-left">{{feed.contentSnippet}}</p> 
+                    <p class="text-left hidden_paragraph">{{feed.content}}</p>                    
+                    <span class="small">{{feed.publishedDate}}</span>
+                    <a href="{{feed.link}}">Read more</a>
+                </li>                
+            </ul>            
+        </div>
+        </section>
+        <section id="three" class="col-md-6">
+        <h5>Content</h5>
+         <div class="row-fluid">              
+                    <h5 id="msgTitle"></h5>                            
+                    <p id="msgContent"></p>                                       
+        </div>
+        </section>
+        <section id="four" class="col-md-6">
+        <h5>Diagram</h5>
+         	<canvas  id="canvas1" width="500" height="500"></canvas>
+        </section>
+</div>
+<script type="text/javascript" src="js/awesomechart.js"></script>
+  <script type="text/javascript" src="js/rss.js"></script>
+</body>
+</html>
