@@ -1,7 +1,7 @@
 'use strict';
 
 var App = angular.module('RSSFeedApp', []);
-
+/*---controller----*/
 App.controller("FeedCtrl", ['$scope','FeedService', function ($scope,Feed) {    
     $scope.loadButonText="Load";
         $scope.allFeeds = [{titleText:"CodeProject C#",url:"http://www.codeproject.com/webservices/articlerss.aspx?cat=3"}, 
@@ -12,7 +12,7 @@ App.controller("FeedCtrl", ['$scope','FeedService', function ($scope,Feed) {
                         {titleText:"TechCrunch",url:"http://feeds.feedburner.com/TechCrunch"},
                         {titleText:"CNN",url:"http://rss.cnn.com/rss/cnn_topstories.rss"}
                         ];
-                        
+     /*---load feed---*/                   
     $scope.loadFeed=function(e){        
         Feed.parseFeed($scope.feedSrc).then(function(res){
             $scope.feeds=res.data.responseData.feed.entries;
@@ -22,7 +22,7 @@ App.controller("FeedCtrl", ['$scope','FeedService', function ($scope,Feed) {
 
 
 }]);
-
+/*---load messages---*/
 App.factory('FeedService',['$http',function($http){
     return {
         parseFeed : function(url){
@@ -35,7 +35,7 @@ App.factory('FeedService',['$http',function($http){
     remove();
 
     
-
+/*---function of load message from feed---*/
 function getMsg(e) {
 
     var header=document.querySelectorAll('ul.unstyled li h5');
@@ -56,6 +56,7 @@ function getMsg(e) {
     }
     
 }
+/*---remove channel function-----*/
 function remove(e) {
     var remove_buttons=document.querySelectorAll('button.remove');
         for (var i=-0;i<remove_buttons.length;i++) {
@@ -65,7 +66,7 @@ function remove(e) {
         
     }
 }
-
+/*---convert html symbol function----*/
 function convertSpecSymbols (str, toText) {
   var
     symbols = [
@@ -93,7 +94,7 @@ function convertSpecSymbols (str, toText) {
   return str;
 }
 
-
+/*---count number clear canvas and draw diagram--*/
 function symbols_number(str){
         var letters=new Array();
         var numbers=new Array();
