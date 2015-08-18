@@ -112,7 +112,7 @@ function symbols_number(str){
         percent[i]=numbers[i]/total_numbers;
         
     }
-    clear_canvas();
+    /*clear_canvas();*/
     drawMyChart(percent,letters);
 }
 
